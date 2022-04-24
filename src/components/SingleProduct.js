@@ -12,8 +12,8 @@ const SingleProduct = () => {
 
     return (
       <WrapItem key={id}>
-      <Box w="300px" borderWidth='1px' borderRadius='xl' overflow='hidden'>
-      <Image w="100%"  h="370px" src={image} alt={title} />
+      <Box w="260px" borderWidth='1px' borderRadius='xl' overflow='hidden'>
+      <Image w="100%"  h="350px" src={image} alt={title} />
       <Box p='6'>
         <Box
           mt='1'
@@ -56,7 +56,7 @@ const SingleProduct = () => {
   return (
     <>
 
-    <Wrap mt="10px" spacing="20px">
+    <Wrap mt="10px" spacing="20px" justify="center">
       {renderList}
     </Wrap>
       
