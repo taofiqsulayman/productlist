@@ -10,10 +10,10 @@ import { Wrap, Image, WrapItem, Center, Heading, Tag, Badge, Text, Box, HStack, 
 
 const ReviewItem = ({user, review, addReview}) =>{
   return (
-    <Box>
+    <Box mt={5}>
       <Heading size='md'>{user}</Heading>
                 
-      <Text fontSize='xl'>{review}</Text>
+      <Text mt={3} fontSize='xl'>{review}</Text>
     </Box>
   )
 }
