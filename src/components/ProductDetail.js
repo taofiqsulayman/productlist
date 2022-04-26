@@ -5,7 +5,8 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectedProduct, removeSelectedProduct } from '../redux/actions/ProductActions';
 import Loading from './Loading';
-import { Wrap, Image, WrapItem, Center, Heading, Tag, Badge, Text, Box, HStack, Button, Input} from "@chakra-ui/react";
+import { Wrap, Image, WrapItem, Center, Heading, Tag, Badge, Text, Box, HStack, Button, Input } from "@chakra-ui/react";
+import { FormControl, FormLabel, FormErrorMessage, FormHelperText } from '@chakra-ui/react';
 
 
 const ReviewItem = ({user, review, addReview}) =>{
@@ -35,6 +36,15 @@ const ProductDetail = () => {
   const userNameRef = useRef();
   const userReviewRef = useRef();
 
+  const [input, setInput] = useState('')
+  const [inpu, setInpu] = useState('')
+
+  const handleInputChange = (e) => setInput(e.target.value)
+  const handleInpuChange = (e) => setInpu(e.target.value)
+
+  const isError = input === '';
+  const isErro = inpu === '';
+
   console.log (product);
 
 
@@ -50,14 +60,18 @@ const ProductDetail = () => {
     dispatch(selectedProduct(response.data));
   };
 
+
   const addReview = () => {
     
     let itemData = {
     user: userNameRef.current.value,
     review: userReviewRef.current.value, 
     }
+    setReviews([...reviews, itemData]);
 
-      setReviews([...reviews, itemData]);
+    document.getElementById("user").innerText = '';
+    document.getElementById('review').innerText = '';
+
   }
 
   useEffect(() => {
@@ -76,7 +90,7 @@ const ProductDetail = () => {
 
   return (
     <>
-      <Wrap mt="10px" spacing="10px" justify="center">
+      <Wrap mb={10} mt="10px" spacing="10px" justify="center">
         <WrapItem>
 
           <HStack spacing='50px'>
@@ -101,9 +115,6 @@ const ProductDetail = () => {
           
         </WrapItem>
 
-        <WrapItem>
-          
-        </WrapItem>
       </Wrap>
 
       <Box mt={10}>
@@ -111,13 +122,39 @@ const ProductDetail = () => {
 
         <Text fontSize='xl'> Add your reviews about the product</Text>
 
-        <Input ref={userNameRef} mt={5} placeholder='Name' />
 
-        <Input ref={userReviewRef} mt={5} placeholder='Review' />
+      <FormControl id='user' mt={5} isInvalid={isError}>
+      <FormLabel > username </FormLabel>
+      <Input ref={userNameRef}
+        value={input}
+        onChange={handleInputChange}
+      />
+      {!isError ? (
+        <FormHelperText>
+          Enter your username
+        </FormHelperText>
+      ) : (
+        <FormErrorMessage>username is required.</FormErrorMessage>
+      )}
+      </FormControl>
 
-        <Button mt={5} colorScheme='teal' w='xs' size='md' onClick={addReview} >Add Review</Button>
+      <FormControl id='review' mt={5} isInvalid={isErro}>
+      <FormLabel >review</FormLabel>
+      <Input ref={userReviewRef}
+        value={inpu}
+        onChange={handleInpuChange}
+      />
+      {!isErro ? (
+        <FormHelperText>
+          Enter your review
+        </FormHelperText>
+      ) : (
+        <FormErrorMessage>review is required.</FormErrorMessage>
+      )}
+      </FormControl>
 
-            
+      <Button mt={5} colorScheme='teal' w='xs' size='md' onClick={addReview} >Add Review</Button>
+
       </Box>
 
       <Box mt={10}>
