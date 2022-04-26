@@ -1,16 +1,39 @@
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useRef } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectedProduct } from '../redux/actions/ProductActions';
-import { Wrap, Image, WrapItem, Center, Heading, Tag, Badge, Text, Box, HStack} from "@chakra-ui/react";
+import { selectedProduct, removeSelectedProduct } from '../redux/actions/ProductActions';
+import Loading from './Loading';
+import { Wrap, Image, WrapItem, Center, Heading, Tag, Badge, Text, Box, HStack, Button, Input} from "@chakra-ui/react";
+
+
+const ReviewItem = ({user, review, addReview}) =>{
+  return (
+    <Box>
+      <Heading size='md'>{user}</Heading>
+                
+      <Text fontSize='xl'>{review}</Text>
+    </Box>
+  )
+}
 
 const ProductDetail = () => {
+  const [reviews, setReviews] = useState([
+    {
+      user: "Tao",
+      review: "this a nice product, got what I ordered",
+    },
+  ])
+
+  const [loading, setLoading] = useState(true);
   const product = useSelector((state) => state.product);
   const {image, title, price, category, description} = product;
   const { productId } = useParams();
   const dispatch = useDispatch();
+
+  const userNameRef = useRef();
+  const userReviewRef = useRef();
 
   console.log (product);
 
@@ -22,12 +45,34 @@ const ProductDetail = () => {
       console.log('Err', err);
     });
 
+    setLoading(false);
+
     dispatch(selectedProduct(response.data));
   };
 
+  const addReview = () => {
+    
+    let itemData = {
+    user: userNameRef.current.value,
+    review: userReviewRef.current.value, 
+    }
+
+      setReviews([...reviews, itemData]);
+  }
+
   useEffect(() => {
     if (productId && productId !== "") fetchProductDetail();
-  }, [productId]);
+    return () => {
+      dispatch(removeSelectedProduct());
+    }
+  }, []);
+
+
+  if (loading) {
+    return (
+        <Loading />
+    );
+  }
 
   return (
     <>
@@ -48,6 +93,7 @@ const ProductDetail = () => {
                 </Box>
                 
                 <Text p='5' fontSize='xl'>{description}</Text>
+                <Button w='xs' size='xs'>Buy Now</Button>
               </Box>              
             </Center>
 
@@ -56,15 +102,32 @@ const ProductDetail = () => {
         </WrapItem>
 
         <WrapItem>
-          <Center>
-            <Heading size='xl'>Reviews</Heading>
-
-            <Text fontSize='xl'></Text>
-
-          </Center>  
           
         </WrapItem>
       </Wrap>
+
+      <Box mt={10}>
+        <Heading size='xl'>Reviews</Heading>
+
+        <Text fontSize='xl'> Add your reviews about the product</Text>
+
+        <Input ref={userNameRef} mt={5} placeholder='Name' />
+
+        <Input ref={userReviewRef} mt={5} placeholder='Review' />
+
+        <Button mt={5} colorScheme='teal' w='xs' size='md' onClick={addReview} >Add Review</Button>
+
+            
+      </Box>
+
+      <Box mt={10}>
+        {
+          reviews.map((item)=>{
+            return <ReviewItem user={item.user} review ={item.review} addReview= {addReview}  />; 
+          })
+        }
+        
+      </Box>  
 
     </>
   )
