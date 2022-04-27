@@ -107,7 +107,7 @@ const ProductDetail = () => {
                 </Box>
                 
                 <Text p='5' fontSize='xl'>{description}</Text>
-                <Button w='xs' size='xs'>Buy Now</Button>
+                <Button w='xs' size='xs' colorScheme='green'>Buy Now</Button>
               </Box>              
             </Center>
 
@@ -140,7 +140,7 @@ const ProductDetail = () => {
 
       <FormControl id='review' mt={5} isInvalid={isErro}>
       <FormLabel >review</FormLabel>
-      <Input ref={userReviewRef}
+      <Input height='sm' ref={userReviewRef}
         value={inpu}
         onChange={handleInpuChange}
       />
