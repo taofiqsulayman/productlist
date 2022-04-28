@@ -6,12 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectedProduct, removeSelectedProduct } from '../redux/actions/ProductActions';
 import Loading from './Loading';
 import { Wrap, Image, WrapItem, Center, Heading, Tag, Badge, Text, Box, HStack, Button, Input } from "@chakra-ui/react";
-import { FormControl, FormLabel, FormErrorMessage, FormHelperText } from '@chakra-ui/react';
+import { FormControl, FormLabel } from '@chakra-ui/react';
 
 
 const ReviewItem = ({user, review, addReview}) =>{
   return (
-    <Box mt={5}>
+    <Box mb={10} mt={5}>
       <Heading size='md'>{user}</Heading>
                 
       <Text mt={3} fontSize='xl'>{review}</Text>
@@ -36,14 +36,9 @@ const ProductDetail = () => {
   const userNameRef = useRef();
   const userReviewRef = useRef();
 
-  const [input, setInput] = useState('')
-  const [inpu, setInpu] = useState('')
+  const [value, setValue] = useState();
+  const [val, setVal] = useState();
 
-  const handleInputChange = (e) => setInput(e.target.value)
-  const handleInpuChange = (e) => setInpu(e.target.value)
-
-  const isError = input === '';
-  const isErro = inpu === '';
 
   console.log (product);
 
@@ -67,10 +62,16 @@ const ProductDetail = () => {
     user: userNameRef.current.value,
     review: userReviewRef.current.value, 
     }
-    setReviews([...reviews, itemData]);
+    if (itemData.user !== '' && itemData.review !== '') {
+      setReviews([...reviews, itemData]);
 
-    document.getElementById("user").innerText = '';
-    document.getElementById('review').innerText = '';
+      setValue("");
+      setVal("");
+
+    } else {
+      alert('Fill the Required Input');
+    }
+    
 
   }
 
@@ -120,37 +121,19 @@ const ProductDetail = () => {
       <Box mt={10}>
         <Heading size='xl'>Reviews</Heading>
 
-        <Text fontSize='xl'> Add your reviews about the product</Text>
+        <Text fontSize='xl'> Add your reviews about the product </Text>
 
 
-      <FormControl id='user' mt={5} isInvalid={isError}>
-      <FormLabel > username </FormLabel>
-      <Input ref={userNameRef}
-        value={input}
-        onChange={handleInputChange}
+      <FormControl mt={5} isRequired >
+      <FormLabel > Username </FormLabel>
+      <Input value={value} id='user' ref={userNameRef}
       />
-      {!isError ? (
-        <FormHelperText>
-          Enter your username
-        </FormHelperText>
-      ) : (
-        <FormErrorMessage>username is required.</FormErrorMessage>
-      )}
       </FormControl>
 
-      <FormControl id='review' mt={5} isInvalid={isErro}>
-      <FormLabel >review</FormLabel>
-      <Input height='sm' ref={userReviewRef}
-        value={inpu}
-        onChange={handleInpuChange}
+      <FormControl  mt={5} isRequired >
+      <FormLabel >Review</FormLabel>
+      <Input value={val} id='review' height='sm' ref={userReviewRef}
       />
-      {!isErro ? (
-        <FormHelperText>
-          Enter your review
-        </FormHelperText>
-      ) : (
-        <FormErrorMessage>review is required.</FormErrorMessage>
-      )}
       </FormControl>
 
       <Button mt={5} colorScheme='teal' w='xs' size='md' onClick={addReview} >Add Review</Button>

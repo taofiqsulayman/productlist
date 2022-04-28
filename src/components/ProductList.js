@@ -37,7 +37,6 @@ const ProductList = () => {
   console.log(products);
 
 
-const [filteredProduct, setFilteredProduct] = useState([]);
 
 const handleSearch = (event) => {
   const searchWord = event.target.value;
@@ -46,9 +45,9 @@ const handleSearch = (event) => {
       });
   
       if (searchWord === "") {
-        setFilteredProduct([]);
+        setProducts([]);
       } else {
-      setFilteredProduct(newFilter);
+      setProducts(newFilter);
       }
   }
 
@@ -66,20 +65,7 @@ const handleSearch = (event) => {
     <>
 
       <VStack mt={5} borderRadius='full'>
-        <Input placeholder="Search for products" onChange={handleSearch} />
-        {filteredProduct.length !== 0 && (
-          <Box mt={5} h='sm' backgroundColor='white' overflow='hidden' overflowY='auto' className='dataResult'>
-            {filteredProduct.map((value, key) => {
-              return(
-                <Box>
-                  <Link to={`/product/${value.id}`}></Link>
-                  <p>{value.title}</p>
-                </Box>
-                )
-              })
-              }
-          </Box>
-          )}
+        <Input borderRadius='full' placeholder="Search for products" onChange={handleSearch} />
       </VStack>
     
       <div>
