@@ -17,8 +17,11 @@
 
 .searchIcon {
   background-color: white;
+  display: -ms-grid;
   display: grid;
   place-items: center;
+
+  
 }
 
 /* input:focus {
