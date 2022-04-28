@@ -9,6 +9,7 @@ import Loading from './Loading';
 
 import { Link } from 'react-router-dom';
 import { Box, Input, VStack } from '@chakra-ui/react';
+import SearchBar from './SearchBar';
 
 
 const ProductList = () => {
@@ -38,19 +39,6 @@ const ProductList = () => {
 
 
 
-const handleSearch = (event) => {
-  const searchWord = event.target.value;
-  const newFilter = products.map((value) => {
-      return value.title.tolowerCase().includes(searchWord.tolowerCase());
-      });
-  
-      if (searchWord === "") {
-        setProducts([]);
-      } else {
-      setProducts(newFilter);
-      }
-  }
-
 
 
 
@@ -64,9 +52,7 @@ const handleSearch = (event) => {
 
     <>
 
-      <VStack mt={5} borderRadius='full'>
-        <Input borderRadius='full' placeholder="Search for products" onChange={handleSearch} />
-      </VStack>
+      <SearchBar placeholder={"Search Products"} />
     
       <div>
       <SingleProduct />
