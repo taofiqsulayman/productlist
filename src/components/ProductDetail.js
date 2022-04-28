@@ -72,8 +72,6 @@ const ProductDetail = () => {
     } else {
       alert('Fill the Required Input');
     }
-    
-
   }
 
   useEffect(() => {
@@ -96,20 +94,20 @@ const ProductDetail = () => {
         <WrapItem>
 
         <Show breakpoint='(min-width: 420px)'>
-          <HStack  spacing='50px'>
-            <Center pt='5' w='xl'>
-            <Image w="100%" h="370px" src={image} alt={title} />
+          <HStack  spacing='30px'>
+            <Center pt='5' w='lg'>
+            <Image w="80%" h="350px" src={image} alt={title} />
             </Center>
 
             <Center>
               <Box display='flex' flexDir='column' justifyContent='space-between'>
-                <Heading p='5' size='xl'>{title}</Heading>
+                <Heading p='5' size='lg'>{title}</Heading>
                 <Box pl='5'>
                   <Tag size='lg' variant='solid' colorScheme='teal' borderRadius='full' mr='10'>$ {price}</Tag>
                   <Badge ml='1' fontSize='xl' colorScheme='green'>{category}</Badge>
                 </Box>
                 
-                <Text p='5' fontSize='xl'>{description}</Text>
+                <Text p='5' fontSize='lg'>{description}</Text>
                 <Button w='xs' size='xs' colorScheme='green'>Buy Now</Button>
               </Box>              
             </Center>
