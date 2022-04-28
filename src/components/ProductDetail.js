@@ -5,8 +5,9 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectedProduct, removeSelectedProduct } from '../redux/actions/ProductActions';
 import Loading from './Loading';
-import { Wrap, Image, WrapItem, Center, Heading, Tag, Badge, Text, Box, HStack, Button, Input } from "@chakra-ui/react";
+import { Wrap, Image, WrapItem, Center, Heading, Tag, Badge, Text, Box, HStack, VStack, Show, Button, Input } from "@chakra-ui/react";
 import { FormControl, FormLabel } from '@chakra-ui/react';
+
 
 
 const ReviewItem = ({user, review, addReview}) =>{
@@ -94,7 +95,8 @@ const ProductDetail = () => {
       <Wrap mb={10} mt="10px" spacing="10px" justify="center">
         <WrapItem>
 
-          <HStack spacing='50px'>
+        <Show breakpoint='(min-width: 420px)'>
+          <HStack  spacing='50px'>
             <Center pt='5' w='xl'>
             <Image w="100%" h="370px" src={image} alt={title} />
             </Center>
@@ -113,7 +115,35 @@ const ProductDetail = () => {
             </Center>
 
           </HStack> 
-          
+        </Show>
+
+        </WrapItem>
+
+        <WrapItem>
+
+        <Show breakpoint='(max-width: 420px)'>
+          <VStack spacing='30px'>
+            <Center pt='5' w='lg'>
+            <Image w="75%" h="350px" src={image} alt={title} />
+            </Center>
+            <Center pt={5} w='lg'>
+              <Box display='flex' flexDir='column' alignItems='center'>
+                <Heading p='5' size='md'>{title}</Heading>
+                <Box mb={5}>
+                  <Tag size='lg' variant='solid' colorScheme='teal' borderRadius='full'>$ {price}</Tag>
+                  <Badge ml='5' fontSize='xl' colorScheme='green'>{category}</Badge>
+                </Box>
+
+                <Box pl='11%' pr='11%' fontSize='sm'>
+                  {description}
+                </Box>
+                <Button mt={5} w='xs' size='xs' colorScheme='green'>Buy Now</Button>
+              </Box>              
+            </Center>
+          </VStack>
+        </Show>
+ 
+
         </WrapItem>
 
       </Wrap>
@@ -126,13 +156,13 @@ const ProductDetail = () => {
 
       <FormControl mt={5} isRequired >
       <FormLabel > Username </FormLabel>
-      <Input value={value} id='user' ref={userNameRef}
+      <Input value={value} id='user' maxW='480px' ref={userNameRef}
       />
       </FormControl>
 
       <FormControl  mt={5} isRequired >
       <FormLabel >Review</FormLabel>
-      <Input value={val} id='review' height='sm' ref={userReviewRef}
+      <Input value={val} id='review' height='150px' maxWidth='480px' ref={userReviewRef}
       />
       </FormControl>
 
