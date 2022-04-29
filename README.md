@@ -4,7 +4,7 @@ A simple product listing/review website that list products from [Fake Store API]
 
 When the user clicks on a product, a product details page where the user can add reviews is displayed. The site also features a search bar capable of auto suggesting products based on the user input.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created with [Create React App](https://github.com/facebook/create-react-app), Redux, and ChakraUI
 
 ## Working with the code!
 
