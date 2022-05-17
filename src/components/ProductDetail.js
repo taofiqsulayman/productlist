@@ -95,12 +95,12 @@ const ProductDetail = () => {
 
         <Show breakpoint='(min-width: 420px)'>
           <HStack  spacing='30px'>
-            <Center pt='5' w='lg'>
-            <Image w="80%" h="350px" src={image} alt={title} />
-            </Center>
+          <Center pt='2'>
+            <Image w="100%"  src={image} alt={title} />
+          </Center>
 
             <Center>
-              <Box display='flex' flexDir='column' justifyContent='space-between'>
+              <Box display='flex' flexDir='column' justifyContent='space-between' w='70%'>
                 <Heading p='5' size='lg'>{title}</Heading>
                 <Box pl='5'>
                   <Tag size='lg' variant='solid' colorScheme='teal' borderRadius='full' mr='10'>$ {price}</Tag>
@@ -114,10 +114,6 @@ const ProductDetail = () => {
 
           </HStack> 
         </Show>
-
-        </WrapItem>
-
-        <WrapItem>
 
         <Show breakpoint='(max-width: 420px)'>
           <VStack spacing='30px'>
@@ -139,11 +135,9 @@ const ProductDetail = () => {
               </Box>              
             </Center>
           </VStack>
-        </Show>
-
+        </Show>        
 
         </WrapItem>
-
       </Wrap>
 
       <Box mt={10}>

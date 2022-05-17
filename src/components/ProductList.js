@@ -7,8 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import SingleProduct from './SingleProduct';
 import Loading from './Loading';
 
-import { Link } from 'react-router-dom';
-import { Box, Input, VStack } from '@chakra-ui/react';
+
 import SearchBar from './SearchBar';
 
 
@@ -30,6 +29,21 @@ const ProductList = () => {
 
     dispatch(setProducts(response.data));
   };
+
+  // const getProducts = () => {
+  //   fetch("https://fakestoreapi.com/products") 
+  //   .then((res) => res.json())
+  //   .then((data) => {
+
+  //     setLoading(false);
+  //     console.log(data);
+  //     dispatch(setProducts(data));
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   getProducts();
+  // }, []);
 
     useEffect (() => {
       fetchProducts();
