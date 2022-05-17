@@ -135,12 +135,12 @@ const ProductDetail = () => {
                 <Box pl='11%' pr='11%' fontSize='sm'>
                   {description}
                 </Box>
-                <Button mt={5} w='xs' size='xs' colorScheme='green'>Buy Now</Button>
+                <Button mt={5} colorScheme='teal' w='md' size='md' >Buy Now</Button>
               </Box>              
             </Center>
           </VStack>
         </Show>
- 
+
 
         </WrapItem>
 
