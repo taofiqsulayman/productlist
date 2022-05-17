@@ -104,11 +104,11 @@ const ProductDetail = () => {
                 <Heading p='5' size='lg'>{title}</Heading>
                 <Box pl='5'>
                   <Tag size='lg' variant='solid' colorScheme='teal' borderRadius='full' mr='10'>$ {price}</Tag>
-                  <Badge ml='1' fontSize='xl' colorScheme='green'>{category}</Badge>
+                  <Badge ml='1' fontSize='xl' colorScheme='teal'>{category}</Badge>
                 </Box>
                 
                 <Text p='5' fontSize='lg'>{description}</Text>
-                <Button w='xs' size='xs' colorScheme='green'>Buy Now</Button>
+                <Button pl='5' w='md' size='md' colorScheme='teal'>Buy Now</Button>
               </Box>              
             </Center>
 
