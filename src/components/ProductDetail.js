@@ -108,7 +108,7 @@ const ProductDetail = () => {
                 </Box>
                 
                 <Text p='5' fontSize='lg'>{description}</Text>
-                <Button pl='5' w='md' size='md' colorScheme='teal'>Buy Now</Button>
+                <Button p='5' w='md' size='md' colorScheme='teal'>Buy Now</Button>
               </Box>              
             </Center>
 
