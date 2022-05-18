@@ -93,45 +93,44 @@ const ProductDetail = () => {
       <Wrap mb={10} mt="10px" spacing="10px" justify="center">
         <WrapItem>
 
-        <Show breakpoint='(min-width: 420px)'>
+        <Show breakpoint='(min-width: 720px)'>
           <HStack  spacing='30px'>
-          <Center pt='2'>
-            <Image w="100%"  src={image} alt={title} />
-          </Center>
 
-            <Center>
-              <Box display='flex' flexDir='column' justifyContent='space-between' w='70%'>
-                <Heading p='5' size='lg'>{title}</Heading>
-                <Box pl='5'>
+            <Image h='300px' w="400px"  src={image} alt={title} />
+
+              <Box mt={3} display='flex' flexDir='column' justifyContent='space-between' w='70%'>
+                <Heading size='md'>{title}</Heading>
+                <Box mt={3} mb={3}>
                   <Tag size='lg' variant='solid' colorScheme='teal' borderRadius='full' mr='10'>$ {price}</Tag>
-                  <Badge ml='1' fontSize='xl' colorScheme='teal'>{category}</Badge>
+                  <Badge ml='2' fontSize='xl' colorScheme='teal'>{category}</Badge>
                 </Box>
                 
-                <Text p='5' fontSize='lg'>{description}</Text>
-                <Button p='5' w='md' size='md' colorScheme='teal'>Buy Now</Button>
+                <Text fontSize='md'>{description}</Text>
+                <Button mt={5} pl='5' w='xs' size='md' colorScheme='teal'>Buy Now</Button>
               </Box>              
-            </Center>
 
           </HStack> 
         </Show>
 
-        <Show breakpoint='(max-width: 420px)'>
-          <VStack spacing='30px'>
-            <Center pt='5' w='lg'>
-            <Image w="75%" h="350px" src={image} alt={title} />
+        <Show breakpoint='(max-width: 720px)'>
+          <VStack spacing='10px'>
+            <Center pt='5' w='md'>
+            <Image w="70%" h="300px" src={image} alt={title} />
             </Center>
-            <Center pt={5} w='lg'>
+            <Center pt={5} w='md'>
               <Box display='flex' flexDir='column' alignItems='center'>
-                <Heading p='5' size='md'>{title}</Heading>
-                <Box mb={5}>
-                  <Tag size='lg' variant='solid' colorScheme='teal' borderRadius='full'>$ {price}</Tag>
-                  <Badge ml='5' fontSize='xl' colorScheme='green'>{category}</Badge>
+                <Heading pl='10' pr='10' size='sm'>{title}</Heading>
+                <Box mt={5} mb={5} >
+                  <Tag size='md' variant='solid' colorScheme='teal' borderRadius='full'>$ {price}</Tag>
+                  <Badge ml='5' fontSize='lg' colorScheme='green'>{category}</Badge>
                 </Box>
 
-                <Box pl='11%' pr='11%' fontSize='sm'>
-                  {description}
-                </Box>
-                <Button mt={5} colorScheme='teal' w='md' size='md' >Buy Now</Button>
+
+
+                <Center pl='10' pr='10'>
+                <Text fontSize='md'> {description} </Text>
+                </Center>
+                <Button mt={5} colorScheme='teal' w='sm' size='sm' >Buy Now</Button>
               </Box>              
             </Center>
           </VStack>
@@ -139,8 +138,10 @@ const ProductDetail = () => {
 
         </WrapItem>
       </Wrap>
-
-      <Box mt={10}>
+        
+        
+        
+        <Box mt={10}>
         <Heading size='xl'>Reviews</Heading>
 
         <Text fontSize='xl'> Add your reviews about the product </Text>
@@ -169,8 +170,8 @@ const ProductDetail = () => {
           })
         }
         
-      </Box>  
-
+      </Box> 
+      
     </>
   )
 }
