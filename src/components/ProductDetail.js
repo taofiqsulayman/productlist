@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectedProduct, removeSelectedProduct } from '../redux/actions/ProductActions';
 import Loading from './Loading';
-import { Wrap, Image, WrapItem, Center, Heading, Tag, Badge, Text, Box, HStack, VStack, Show, Button, Input } from "@chakra-ui/react";
+import { Wrap, Image, WrapItem, Center, Heading, Tag, Badge, Text, Box, HStack, VStack, Show, Button, Input, Textarea } from "@chakra-ui/react";
 import { FormControl, FormLabel } from '@chakra-ui/react';
 
 
@@ -94,6 +94,8 @@ const ProductDetail = () => {
         <WrapItem>
 
         <Show breakpoint='(min-width: 720px)'>
+
+          <Box display="flex" flexDir="column" >
           <HStack  spacing='30px'>
 
             <Image h='300px' w="400px"  src={image} alt={title} />
@@ -109,39 +111,9 @@ const ProductDetail = () => {
                 <Button mt={5} pl='5' w='xs' size='md' colorScheme='teal'>Buy Now</Button>
               </Box>              
 
-          </HStack> 
-        </Show>
+          </HStack>
 
-        <Show breakpoint='(max-width: 720px)'>
-          <VStack spacing='10px'>
-            <Center pt='5' w='md'>
-            <Image w="70%" h="300px" src={image} alt={title} />
-            </Center>
-            <Center pt={5} w='md'>
-              <Box display='flex' flexDir='column' alignItems='center'>
-                <Heading pl='10' pr='10' size='sm'>{title}</Heading>
-                <Box mt={5} mb={5} >
-                  <Tag size='md' variant='solid' colorScheme='teal' borderRadius='full'>$ {price}</Tag>
-                  <Badge ml='5' fontSize='lg' colorScheme='green'>{category}</Badge>
-                </Box>
-
-
-
-                <Center pl='10' pr='10'>
-                <Text fontSize='md'> {description} </Text>
-                </Center>
-                <Button mt={5} colorScheme='teal' w='sm' size='sm' >Buy Now</Button>
-              </Box>              
-            </Center>
-          </VStack>
-        </Show>        
-
-        </WrapItem>
-      </Wrap>
-        
-        
-        
-        <Box mt={10}>
+          <Box mt={10}>
         <Heading size='xl'>Reviews</Heading>
 
         <Text fontSize='xl'> Add your reviews about the product </Text>
@@ -155,22 +127,88 @@ const ProductDetail = () => {
 
       <FormControl  mt={5} isRequired >
       <FormLabel >Review</FormLabel>
-      <Input value={val} id='review' height='150px' maxWidth='480px' ref={userReviewRef}
+      <Textarea value={val} id='review' height='150px' maxWidth='480px' ref={userReviewRef}
       />
       </FormControl>
 
       <Button mt={5} colorScheme='teal' w='xs' size='md' onClick={addReview} >Add Review</Button>
 
-      </Box>
+          </Box>
 
-      <Box mt={10}>
-        {
-          reviews.map((item)=>{
-            return <ReviewItem user={item.user} review ={item.review} addReview= {addReview}  />; 
-          })
-        }
+          <Box mt={10}>
+          {
+            reviews.map((item)=>{
+              return <ReviewItem user={item.user} review ={item.review} addReview= {addReview}  />; 
+            })
+          }
+          
+          </Box>
+          </Box>
+
+        </Show>
+
+        <Show breakpoint='(max-width: 720px)'>
+          <VStack spacing='10px'>
+            <Center pt='5' w='md'>
+            <Image w="70%" h="300px" src={image} alt={title} />
+            </Center>
+            <Center pt={5} w='md'>
+              <Box display='flex' flexDir='column' alignItems='center'>
+                <Heading pl='13%' pr='10%' size='sm'>{title}</Heading>
+                <Box mt={5} mb={5} >
+                  <Tag size='md' variant='solid' colorScheme='teal' borderRadius='full'>$ {price}</Tag>
+                  <Badge ml='5' fontSize='lg' colorScheme='green'>{category}</Badge>
+                </Box>
+                <Center pl='13%' pr='13%'>
+                <Text fontSize='md'> {description} </Text>
+                </Center>
+                <Button mt={5} colorScheme='teal' size='sm' >Buy Now</Button>
+                
+                <Box mt={10} display="flex" flexDir="column">
+                <Heading size='xl'>Reviews</Heading>
+
+                <Text fontSize='xl'> Add your reviews about the product </Text>
+
+
+                <FormControl mt={5} isRequired >
+                <FormLabel > Username </FormLabel>
+                <Input value={value} id='user' maxW='480px' ref={userNameRef}
+                />
+                </FormControl>
+
+                <FormControl  mt={5} isRequired >
+                <FormLabel >Review</FormLabel>
+                <Textarea value={val} id='review' height='150px' maxWidth='480px' ref={userReviewRef}
+                />
+                </FormControl>
+
+                <Button mt={5} colorScheme='teal' w='xs' size='md' onClick={addReview} >Add Review</Button>
+
+
+                <Box mt={10}>
+                {
+                  reviews.map((item)=>{
+                    return <ReviewItem user={item.user} review ={item.review} addReview= {addReview}  />; 
+                  })
+                }
+                
+                </Box> 
+
+                </Box>
+              </Box>
+
+
+            </Center>
+          </VStack>
+        </Show>        
+
+        </WrapItem>
         
-      </Box> 
+      </Wrap>
+        
+        
+        
+
       
     </>
   )

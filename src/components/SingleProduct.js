@@ -16,7 +16,7 @@ const SingleProduct = () => {
         <Link to={`/product/${id}`}>
           <Box w="260px" borderWidth='1px' borderRadius='xl' overflow='hidden'>
           <Center pt='2'>
-            <Image w="100%"  h="350px" src={image} alt={title} />
+            <Image w="100%" p={2} h="350px" src={image} alt={title} />
           </Center>
           <Box p='6'>
             <Box
